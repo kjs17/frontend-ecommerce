@@ -17,6 +17,9 @@ import ShippingAddressScreen from './Screen/ShippingAddressScreen.js';
 import SignupScreen from './Screen/SignupScreen.js';
 import PaymentMethodScreen from './Screen/PaymentMethodScreen.js';
 import PlaceOrderScreen from './Screen/PlaceOrderScreen.js';
+import ProductListScreen from './Screen/ProductListScreen.js';
+import AdminRoute from './components/AdminRoute.js';
+import ProductEditScreen from './Screen/ProductEditScreen.js';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -71,6 +74,16 @@ function App() {
                     Sign In
                   </Link>
                 )}
+                {userInfo && userInfo.isAdmin && (
+                  <NavDropdown title="Admin" id="admin-nav-dropdown">
+                    <LinkContainer to="/admin/dashboard">
+                      <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/products">
+                      <NavDropdown.Item>Products</NavDropdown.Item>
+                    </LinkContainer>
+                  </NavDropdown>
+                )}
               </Nav>
             </Container>
           </Navbar>
@@ -88,6 +101,22 @@ function App() {
               <Route
                 path="/shipping"
                 element={<ShippingAddressScreen />}
+              ></Route>
+              <Route
+                path="/admin/products"
+                element={
+                  <AdminRoute>
+                    <ProductListScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/product/:id"
+                element={
+                  <AdminRoute>
+                    <ProductEditScreen />
+                  </AdminRoute>
+                }
               ></Route>
             </Routes>
           </Container>
