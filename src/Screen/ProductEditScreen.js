@@ -206,16 +206,21 @@ export default function ProductEditScreen() {
 
           <Form.Group className="mb-3" controlId="additionalImage">
             <Form.Label>Additional Images</Form.Label>
-            {images.length === 0 && <MessageBox>No image</MessageBox>}
+            {!images ||
+              (images.length === 0 && <MessageBox>No image</MessageBox>)}
             <ListGroup variant="flush">
-              {images.map((x) => (
-                <ListGroup.Item key={x}>
-                  {x}
-                  <Button variant="light" onClick={() => deleteFileHandler(x)}>
-                    <i className="fa fa-times-circle"></i>
-                  </Button>
-                </ListGroup.Item>
-              ))}
+              {!images ||
+                images.map((x) => (
+                  <ListGroup.Item key={x}>
+                    {x}
+                    <Button
+                      variant="light"
+                      onClick={() => deleteFileHandler(x)}
+                    >
+                      <i className="fa fa-times-circle"></i>
+                    </Button>
+                  </ListGroup.Item>
+                ))}
             </ListGroup>
           </Form.Group>
           <Form.Group className="mb-3" controlId="additionalImageFile">

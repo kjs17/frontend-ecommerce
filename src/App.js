@@ -40,7 +40,7 @@ function App() {
               <LinkContainer to="/">
                 <Navbar.Brand>kdJeyEss</Navbar.Brand>
               </LinkContainer>
-              <Nav className="me-auto">
+              <Nav className="ms-auto position-sticky-top">
                 <Link to="/cart" className="nav-link">
                   Cart
                   {cart.cartItems.length > 0 && (
